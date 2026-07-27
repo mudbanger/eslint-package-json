@@ -8,8 +8,14 @@
 	"author": "Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)",
 	"type": "module",
 	"exports": {
-		"types": "./index.d.ts",
-		"default": "./index.js"
+		".": {
+			"types": "./index.d.ts",
+			"default": "./index.js"
+		},
+		"./speed-insights": {
+			"types": "./speed-insights.d.ts",
+			"default": "./speed-insights.js"
+		}
 	},
 	"sideEffects": false,
 	"engines": {
@@ -35,7 +41,9 @@
 	"files": [
 		"index.js",
 		"index.d.ts",
-		"rules"
+		"rules",
+		"speed-insights.js",
+		"speed-insights.d.ts"
 	],
 	"keywords": [
 		"eslint",
@@ -51,6 +59,7 @@
 	],
 	"dependencies": {
 		"@eslint/json": "^2.0.1",
+		"@vercel/speed-insights": "^2.0.0",
 		"detect-indent": "^7.0.2",
 		"hosted-git-info": "^10.1.1",
 		"npm-package-arg": "^14.0.0",
