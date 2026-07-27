@@ -12,6 +12,10 @@
 			"types": "./index.d.ts",
 			"default": "./index.js"
 		},
+		"./analytics": {
+			"types": "./analytics.d.ts",
+			"default": "./analytics.js"
+		},
 		"./speed-insights": {
 			"types": "./speed-insights.d.ts",
 			"default": "./speed-insights.js"
@@ -42,6 +46,8 @@
 		"index.js",
 		"index.d.ts",
 		"rules",
+		"analytics.js",
+		"analytics.d.ts",
 		"speed-insights.js",
 		"speed-insights.d.ts"
 	],
@@ -59,6 +65,7 @@
 	],
 	"dependencies": {
 		"@eslint/json": "^2.0.1",
+		"@vercel/analytics": "^2.0.1",
 		"@vercel/speed-insights": "^2.0.0",
 		"detect-indent": "^7.0.2",
 		"hosted-git-info": "^10.1.1",
