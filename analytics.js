@@ -14,7 +14,7 @@
  * ```html
  * <script type="module">
  *   import { inject } from './analytics.js';
- *   inject();
+ *   inject({ mode: 'production' });
  * </script>
  * ```
  *
@@ -24,8 +24,16 @@
  * // or for Next.js:
  * // import { Analytics } from '@vercel/analytics/next';
  * ```
+ *
+ * @param {object} [options] - Analytics configuration options
+ * @param {'auto' | 'development' | 'production'} [options.mode='auto'] - Environment mode
+ * @param {boolean} [options.debug=false] - Enable debug logging
+ * @param {Function} [options.beforeSend] - Callback to modify events before sending
+ * @param {string} [options.scriptSrc] - Custom script URL
+ * @param {string} [options.eventEndpoint] - Custom event endpoint
+ * @param {string} [options.viewEndpoint] - Custom view endpoint
  */
-export function inject() {
+export function inject(options = {}) {
 	// Check if running in a browser environment
 	if (globalThis.window === undefined) {
 		console.warn('Web Analytics can only be initialized in a browser environment');
@@ -34,9 +42,7 @@ export function inject() {
 
 	// Dynamic import to avoid bundling in non-browser environments
 	import('@vercel/analytics').then(module => {
-		if (module.inject) {
-			module.inject();
-		}
+		module.inject(options);
 	}).catch(error => {
 		console.error('Failed to load Vercel Web Analytics:', error);
 	});
@@ -44,3 +50,4 @@ export function inject() {
 
 // Re-export all Web Analytics functionality for convenience
 export {Analytics} from '@vercel/analytics/react';
+export {track} from '@vercel/analytics';
